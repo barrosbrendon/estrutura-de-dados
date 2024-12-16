@@ -12,7 +12,7 @@ public class Main {
 		System.out.println("Dados originais = " + dados);
 		
 		ArrayList<Integer> dadosBubble = ED.bubbleSort(dados);
-		System.out.println("BubbleSort");
+		System.out.println("\nBubbleSort");
 		for(int elemento : dadosBubble) {
 			
 			System.out.printf("%d ", elemento);
@@ -21,9 +21,8 @@ public class Main {
 		
 		dados.removeAll(dados); // Esvaziar elementos
 		Collections.addAll(dados, 2, 3, 1, 4, 2); // resetar os dados
-		System.out.println(dados);
 		
-		System.out.println("MergeSort");
+		System.out.println("\nMergeSort");
 		ArrayList<Integer> dadosMerge = new ArrayList<>();
 		dadosMerge = ED.mergeSort(dados);
 		
@@ -31,6 +30,19 @@ public class Main {
 			
 			System.out.printf("%d ", elemento);
 			
+		}
+		
+		dados.removeAll(dados); // Esvaziar elementos
+		Collections.addAll(dados, 2, 3, 1, 4, 2); // resetar os dados
+		
+		System.out.println("\nQuickSort");
+		ArrayList<Integer> dadosQuick = new ArrayList<>();
+		dadosQuick = ED.quickSort(dados, 0, dados.size()-1);
+		
+		for(int elemento : dadosQuick) {
+			
+			System.out.printf("%d ", elemento);
+					
 		}
 
 	}

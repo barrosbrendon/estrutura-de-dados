@@ -79,5 +79,54 @@ static void merge(ArrayList<Integer> dados, List<Integer> dadosEsq, List<Integer
 	}
 	
 	}
+
+static ArrayList<Integer> quickSort(ArrayList<Integer> dados, int inicio, int fim ) {
+
+	if(inicio < fim) {
+		
+		int pontoDeDivisao = particionar(dados, inicio, fim);
+		ED.quickSort(dados, inicio, pontoDeDivisao-1);
+		ED.quickSort(dados, pontoDeDivisao+1, fim);
+		
+	}
+	
+	return dados;
+	
+}
+
+static int particionar(ArrayList<Integer> dados, int inicio, int fim) {
+	
+	int pivo = dados.get(inicio), posicaoEsquerda = inicio+1, posicaoDireita = fim;
+	boolean flag = true;
+	
+	while(flag == true) {
+		
+		while(posicaoEsquerda <= posicaoDireita && dados.get(posicaoEsquerda) <= pivo) {
+			
+			posicaoEsquerda += 1;
+			
+		}
+		while(posicaoDireita >= posicaoEsquerda && dados.get(posicaoDireita) >= pivo) {
+			posicaoDireita -= 1;
+		}
+		
+		if(posicaoEsquerda > posicaoDireita) {
+			flag = false;
+		} else {
+			
+			int temp = dados.get(posicaoDireita);
+			dados.set(posicaoDireita, dados.get(posicaoEsquerda));
+			dados.set(posicaoEsquerda, temp);
+			
+		}
+		
+	}
+	
+	int temp = dados.get(inicio);
+	dados.set(inicio, dados.get(posicaoDireita));
+	dados.set(posicaoDireita, temp);
+	return posicaoDireita;
+	
+}
 	
 }
