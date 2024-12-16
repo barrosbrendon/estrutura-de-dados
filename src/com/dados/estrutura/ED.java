@@ -1,6 +1,7 @@
 package com.dados.estrutura;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ED {
 
@@ -26,6 +27,57 @@ static ArrayList<Integer> bubbleSort(ArrayList<Integer> dados) { // ordem cresce
 	}
 	
 	return dados;
+	}
+
+static ArrayList<Integer> mergeSort(ArrayList<Integer> dados) {
+	
+	if(dados.size() <= 1) {
+		return dados;
+		
+	}
+	
+	int meio = dados.size()/2;
+	
+	ArrayList<Integer> dadosEsquerda = new ArrayList<>(dados.subList(0, meio));
+	ArrayList<Integer> dadosDireita = new ArrayList<>(dados.subList(meio, dados.size()));
+	
+	ED.mergeSort(dadosEsquerda);
+	ED.mergeSort(dadosDireita);
+	
+	ED.merge(dados, dadosEsquerda, dadosDireita);
+	
+	return dados;
+	
+	}
+
+static void merge(ArrayList<Integer> dados, List<Integer> dadosEsq, List<Integer> dadosDir ) {
+	
+	int i = 0, j = 0, k = 0;
+	
+	while(i < dadosEsq.size() && j < dadosDir.size()) {
+		
+		if(dadosEsq.get(i) <= dadosDir.get(j)) {
+			
+			dados.set(k++, dadosEsq.get(i++));
+			
+		} else {
+			
+			dados.set(k++, dadosDir.get(j++));
+			}
+		}
+	
+	while(i < dadosEsq.size()) {
+		
+		dados.set(k++, dadosEsq.get(i++));
+		
+	}
+	
+	while(j < dadosDir.size()) {
+		
+		dados.set(k++, dadosDir.get(j++));
+		
+	}
+	
 	}
 	
 }
